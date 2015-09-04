@@ -68,6 +68,7 @@ settings:
 
     # Should be one of CRITICAL, ERROR, WARNING, INFO and DEBUG - this affects
     # the level of logging into the log file.
+    # Default is INFO.
     loglevel: INFO
 
     # A section starting with the word "source" defines a source - the rest
@@ -81,7 +82,9 @@ settings:
     # The path of the RRD file to populate this data source.
     source-file: %(srcprefix)s-if_venet0-up-d.rrd
 
-    # Optional: the colour of the line on the graph.
+    # Optionally force the colour of the line on the graph, for choices see
+    # https://library.panic.com/status-board/graph_tutorial/#color
+    # Default is to allow status board to pick the colours.
     color: green
     
     [source net-traffic-down]
@@ -96,25 +99,29 @@ settings:
     # The title of the whole graph.
     title: Net Traffic (bit/s)
 
-    # Optionally set scale to K or M, which will cause the graph to scale
+    # Optionally set scale to "K" or "M", which will cause the graph to scale
     # values to thousands or millions respectively, and also cause the K
     # or M suffix to be added to values on the y-axis.
     scale: K
 
-    # The type of the graph can be line or bar.
+    # Specify type of graph, either "line" or "bar".
+    # Default is "line".
     type: line
 
     # The full path of the generated JSON text file.
     output-file: %(webroot)s/network.json
 
     # The interval at which the status board should re-fetch the JSON file.
+    # Defaults to whatever "resolution" is set to.
     refresh-every: 5m
 
     # The interval between data points in the generated set.
+    # Default is 5m.
     resolution: 5m
 
     # The period of time over which to return data - the combination of
     # this and 'resolution' determines the number of data points.
+    # Default is 24h.
     period: 6h
 
     # A comma-separated list of the names of sources defined by earlier
